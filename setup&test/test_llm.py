@@ -15,7 +15,7 @@ import sys
 import asyncio
 
 async def main():
-    user_input = "what's the meaning of life?"
+    user_input = "hello brother, kaise ho, kya aap hindi jante ho?"
 
     print("---LLM Response___")
 
