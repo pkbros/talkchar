@@ -14,12 +14,6 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 # --- STREAMING FUNCTION ---
 async def stream_llm_response(user_message: str):
-    """
-    Sends user message to Groq and streams back
-    parsed sentences one by one.
-    Each yielded item is a dict: {text, emotion, pose}
-    """
-
     stream = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
@@ -30,18 +24,16 @@ async def stream_llm_response(user_message: str):
         temperature=0.7,
     )
 
-    # Buffer to collect characters until we get a full JSON line
     buffer = ""
 
     for chunk in stream:
-        # Extract the new text fragment from this chunk
         delta = chunk.choices[0].delta.content
         if delta is None:
             continue
 
         buffer += delta
 
-        # Check if buffer contains a complete JSON line
+        # Only split on newline when we have a complete JSON object
         while "\n" in buffer:
             line, buffer = buffer.split("\n", 1)
             line = line.strip()
@@ -49,14 +41,13 @@ async def stream_llm_response(user_message: str):
             if not line:
                 continue
 
-            # Try to parse the line as JSON
+            # Skip anything that doesn't look like JSON
+            if not line.startswith("{"):
+                continue
+
             try:
                 sentence = json.loads(line)
-
-                # Validate it has the keys we expect
                 if "text" in sentence and "emotion" in sentence and "pose" in sentence:
                     yield sentence
-
             except json.JSONDecodeError:
-                # LLM sent something that isn't valid JSON, skip it
                 pass
