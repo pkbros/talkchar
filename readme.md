@@ -1,4 +1,4 @@
-Here's the full summary of everything decided so far:
+Here's the full introduction of everything decided so far:
 
 ---
 
