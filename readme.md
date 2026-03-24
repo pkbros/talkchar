@@ -1,4 +1,5 @@
-TalkChar is a next-generation real-time conversational avatar system that transforms plain text into a living 2D character.
+**overview**
+TalkChar is a next-generation real-time conversational system that transforms plain text into a living 2D character.
 
 It combines LLM intelligence + emotional expression + lip-synced speech to create highly immersive, human-like interactions.
 
