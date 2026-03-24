@@ -1,12 +1,8 @@
-Here's the full introduction of everything decided so far:
+TalkChar is a next-generation real-time conversational avatar system that transforms plain text into a living 2D character.
 
----
+It combines LLM intelligence + emotional expression + lip-synced speech to create highly immersive, human-like interactions.
 
-**Project: TalkChar**
-A real time talking 2D character powered by LLM with emotions, poses and lip sync.
-
----
-
+💡 Imagine ChatGPT… but it talks, reacts, and feels.
 **Architecture: Sentence Level Streaming**
 ```
 User Input
