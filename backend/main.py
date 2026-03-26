@@ -29,7 +29,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
             # Stream LLM response sentence by sentence
             async for sentence in stream_llm_response(user_message):
-                tts_result = process_sentence(sentence["text"])
+                tts_result = process_sentence(sentence["text"], sentence.get("emotion", "neutral"))
 
                 # comibne everything into one payload
                 payload = {

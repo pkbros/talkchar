@@ -21,7 +21,8 @@ async def stream_llm_response(user_message: str):
             {"role": "user", "content": user_message},
         ],
         stream=True,
-        temperature=0.7,
+        temperature=1.0,
+        top_p=0.9
     )
 
     buffer = ""
